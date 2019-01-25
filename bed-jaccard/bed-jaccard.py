@@ -47,7 +47,7 @@ def main():
     mask = np.zeros_like(jaccard)
     mask[np.triu_indices_from(mask, 1)] = True
     g = sns.heatmap(jaccard, annot=True, fmt='.2f', mask=mask,
-                    square=True)
+                    square=True, annot_kws={"size": 8})
     g.get_figure().savefig(ARGS.prefix + '.pdf', figsize=(2 * len(ARGS.bed)))
 
 
