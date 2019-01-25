@@ -8,4 +8,10 @@ setup(name='bed-jaccard',
       author_email='james.hawley@mail.utoronto.ca',
       license='GPLv3',
       packages=['bed-jaccard'],
+      install_requires=[
+          'numpy',
+          'pandas',
+          'pybedtools',
+          'seaborn'
+      ]
       zip_safe=True)
