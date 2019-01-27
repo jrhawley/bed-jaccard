@@ -12,7 +12,14 @@ setup(
     url='http://github.com/jrhawley/bed-jaccard',
     author='James Hawley',
     author_email='james.hawley@mail.utoronto.ca',
-    license='GPLv3',
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Operating System :: OS Independent",
+        "Intended Audience :: Science/Research",
+        "Natural Language :: English",
+        "Topic :: Scientific/Engineering :: Bio-Informatics"
+    ],
     packages=['bed_jaccard'],
     install_requires=[
         'numpy',
