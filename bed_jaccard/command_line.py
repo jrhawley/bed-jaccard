@@ -23,4 +23,4 @@ def main():
     nonex_files = [b for b in ARGS.bed if not os.path.exists(b)]
     if len(nonex_files) != 0:
         raise OSError(' '.join([nonex_files[0], 'not found.']))
-    run()
+    run(ARGS.bed, ARGS.prefix)

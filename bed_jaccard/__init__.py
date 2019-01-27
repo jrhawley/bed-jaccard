@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
 
-def run(bed, prefix):
+def run(bed, prefix='jaccard'):
     # placeholder for resultant data
     results = pd.DataFrame(columns=[
         'Index 1', 'Index 2', 'Sample 1', 'Sample 2', 'intersection',
