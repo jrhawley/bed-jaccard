@@ -7,7 +7,7 @@ with open(path.join(this_dir, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='bed-jaccard',
-    version='0.1.3',
+    version='0.1.4',
     description='Quickly calculate and plot Jaccard index for BED files',
     url='http://github.com/jrhawley/bed-jaccard',
     author='James Hawley',
