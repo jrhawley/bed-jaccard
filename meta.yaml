@@ -1,0 +1,49 @@
+{% set name = "bed-jaccard" %}
+{% set version = "0.1.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/jrhawley/bed-jaccard.git
+
+build:
+  number: 0
+  entry_points:
+    - bed-jaccard=bed_jaccard.command_line:main
+  script: "$PYTHON -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - numpy
+    - pandas
+    - pip
+    - pybedtools
+    - python
+    - seaborn
+  run:
+    - numpy
+    - pandas
+    - pybedtools
+    - python
+    - seaborn
+
+test:
+  imports:
+    - bed_jaccard
+  commands:
+    - bed-jaccard --help
+
+about:
+  home: http://github.com/jrhawley/bed-jaccard
+  license: GPLv3
+  license_family: GPL3
+  license_file: LICENSE
+  summary: Quickly calculate and plot Jaccard index for BED files
+  doc_url: https://bed-jaccard.readthedocs.io/en/latest/?badge=latest
+  dev_url: http://github.com/jrhawley/bed-jaccard
+
+extra:
+  recipe-maintainers:
+    - jrhawley

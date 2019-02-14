@@ -1,7 +1,7 @@
 # bed-jaccard
 
 [![version](https://img.shields.io/pypi/v/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
-[![conda](https://img.shields.io/conda/pn/:channel/bed-jaccard.svg)](https://anaconda.org/:channel/bed-jaccard)
+[![conda](https://img.shields.io/badge/conda-bed--jaccard-brightgreen.svg)](https://anaconda.org/jrhawley/bed-jaccard)
 [![wheel](https://img.shields.io/pypi/wheel/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
 
 [![python version](https://img.shields.io/pypi/pyversions/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
@@ -20,4 +20,10 @@ It can either be used in the command line by running `bed-jaccard bed [bed ...]`
 
 ```shell
 pip install bed-jaccard
+```
+
+## Conda
+
+```shell
+conda install -c jrhawley bed-jaccard
 ```
