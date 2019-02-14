@@ -1,6 +1,6 @@
-import os.path
+import os.path as path
 import argparse
-from . import run
+from .run import run
 
 
 def main():
@@ -20,7 +20,7 @@ def main():
         default='jaccard'
     )
     ARGS = PARSER.parse_args()
-    nonex_files = [b for b in ARGS.bed if not os.path.exists(b)]
+    nonex_files = [b for b in ARGS.bed if not path.exists(b)]
     if len(nonex_files) != 0:
         raise OSError(' '.join([nonex_files[0], 'not found.']))
     run(ARGS.bed, ARGS.prefix)
