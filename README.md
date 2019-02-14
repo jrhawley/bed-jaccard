@@ -16,13 +16,13 @@ It can either be used in the command line by running `bed-jaccard bed [bed ...]`
 
 ## Installation
 
-## Pip
+### Pip
 
 ```shell
 pip install bed-jaccard
 ```
 
-## Conda
+### Conda
 
 ```shell
 conda install -c jrhawley bed-jaccard
