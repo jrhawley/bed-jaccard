@@ -11,10 +11,13 @@ from __future__ import division, absolute_import, print_function
 import numpy as np
 import pandas as pd
 import pybedtools as pbt
-import seaborn as sns
-import matplotlib.pyplot as plt
+import matplotlib
 
-plt.switch_backend('agg')
+# handle matplot lib backend nonsense
+matplotlib.use('agg')
+
+import matplotlib.pyplot
+import seaborn as sns
 
 
 def run(bed, prefix='jaccard'):
