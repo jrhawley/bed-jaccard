@@ -21,11 +21,8 @@ matrix:
       language: generic
       env: TOXENV=py36
 
-before_install:
-  - . /.travis/before_install.sh
-
 install:
-  - python setup.py install
+  - . /.travis/install.sh
 
 script:
   - bed-jaccard --help
