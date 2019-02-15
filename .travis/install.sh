@@ -16,13 +16,13 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
     case "${TOXENV}" in
         py34)
-            PY_VER = '3.4'
+            export PY_VER = '3.4'
             ;;
         py35)
-            PY_VER = '3.5'
+            export PY_VER = '3.5'
             ;;
         py36)
-            PY_VER = '3.6'
+            export PY_VER = '3.6'
             ;;
     esac
 
