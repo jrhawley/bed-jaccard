@@ -2,8 +2,7 @@
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     # download conda
-    CONDA_URL = 'https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh'
-    wget ${CONDA_URL} -o miniconda.sh
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o miniconda.sh
 
     # install conda
     ./miniconda.sh -b -p $HOME/miniconda3
