@@ -6,7 +6,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
     # install conda
     chmod +x miniconda.sh
-    ./miniconda.sh -b -p $HOME/miniconda3
+    bash miniconda.sh -b -p $HOME/miniconda3
     export PATH="$HOME/miniconda3/bin:$PATH"
 
     # update and configure conda
@@ -17,13 +17,13 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
     case "${TOXENV}" in
         py34)
-            export PY_VER = '3.4'
+            export PY_VER="3.4"
             ;;
         py35)
-            export PY_VER = '3.5'
+            export PY_VER="3.5"
             ;;
         py36)
-            export PY_VER = '3.6'
+            export PY_VER="3.6"
             ;;
     esac
 
