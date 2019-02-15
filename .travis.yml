@@ -22,7 +22,7 @@ matrix:
       env: TOXENV=py36
 
 install:
-  - . /.travis/install.sh
+  - ./.travis/install.sh
 
 script:
   - bed-jaccard --help
