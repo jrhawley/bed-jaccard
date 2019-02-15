@@ -5,6 +5,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o miniconda.sh
 
     # install conda
+    chmod +x miniconda.sh
     ./miniconda.sh -b -p $HOME/miniconda3
     export PATH="$HOME/miniconda3/bin:$PATH"
 
