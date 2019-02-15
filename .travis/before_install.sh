@@ -11,12 +11,11 @@ CONDA_URL = 'https://repo.anaconda.com/miniconda/Miniconda3-latest-${CONDA_VER}-
 wget ${CONDA_URL} -o miniconda.sh
 
 # install conda
-sh miniconda.sh -b -p $HOME/miniconda3
+./miniconda.sh -b -p $HOME/miniconda3
 export PATH="$HOME/miniconda3/bin:$PATH"
 
 # update and configure conda
 conda config --set always_yes yes --set changeps1 no
-conda activate
 conda update -q conda
 conda info -a
 which python
@@ -35,3 +34,4 @@ esac
 
 # create environment and install python
 conda create -n ${TOXENV} python=${PY_VER} -q
+conda activate ${TOXENV}
