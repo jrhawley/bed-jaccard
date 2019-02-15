@@ -1,0 +1,17 @@
+language: python
+python:
+- '3.3'
+- '3.4'
+- '3.5'
+- '3.6'
+- '3.7'
+install: python setup.py install
+deploy:
+  provider: pypi
+  user: jrhawley
+  password:
+    secure: C4itzrY3nqzqL3l3UchlzvBRzuhGAP5hhip5u8Ti0HAq9uuzb+VHhsHfBqgFJWhn9YHmslZSMZ531PL4o9cS+F2gAZuwD7SCnmpYPPeFcIf0dghtaPE3F77VCdybiT+hASwrdAyaRKR4gtvFwCiPU9ZmnAEpPuz1A+Ck/AjvyBu6eBP3yiflo3U90L7sUTGVq4bklqyOZrT99MVrYDxkCfosk+TFUAGq/VPd4hW1DgJ0RqXXMwZQn/9swnxYxl+TR8wd632eWNy1eAzjdycXDU9TE8CLstB3EOiu+jIQ3oWaI+5r4cveMb+7gxCRS1vunfFRmg1YfUrzwdtokfQJDImzPJuqVc+chsRU/hm3T1acNDBMBc++Eb3uCE24jhfUN2n3RasSDpLK0SSECEneEguGiiNlnmCCOCP5gFTJ6Tvp2geL6E9jRVKmTAJ6sz27Yc+lONJdbMWZYKVQTRgt34MqHxwFnjZezD7X51pATKxRdpuUUpzx9MNqw8Ufzzs+g6mMGzHOgQdf+HZMAPvFHNV5dLniTWEPcIqkVYUGhhMQ6aGQiEApWQEALp59+4r9GFvj9s0ihntRq9/8GEs+memBRoQ780LSYQ7GCZM7jHyWYDuKc55SXBE4/YcmT4PmlRh8Iqzh9oPmbsPgkvdz5Vx7j7/rPf2FKvJgXVmyd7g=
+  on:
+    tags: true
+    branch: master
+  distributions: "sdist bdist_wheel"
