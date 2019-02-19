@@ -2,7 +2,7 @@
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     # download conda
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o miniconda.sh
+    curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o miniconda.sh
     
     # diagnose conda issues
     wc -l miniconda.sh
