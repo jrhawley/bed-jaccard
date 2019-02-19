@@ -6,8 +6,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     
     # diagnose conda download issues
     wc -l miniconda.sh
-    head -n 100 miniconda.sh
-    tail -n 100 miniconda.sh
+    head miniconda.sh
     echo ""
     echo "Conda file check works out"
 
