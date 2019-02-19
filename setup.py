@@ -24,7 +24,7 @@ setup(
     packages=['bed_jaccard'],
     install_requires=[
         'numpy>=1.11',
-        'pandas',
+        'pandas >= 0.15.0',
         'pybedtools',
         'seaborn'
     ],

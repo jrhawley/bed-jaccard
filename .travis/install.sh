@@ -16,9 +16,6 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     which python
 
     case "${TOXENV}" in
-        py34)
-            export PY_VER="3.4"
-            ;;
         py35)
             export PY_VER="3.5"
             ;;
