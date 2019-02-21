@@ -21,7 +21,6 @@ install:
 script:
   - bed-jaccard --help
 
-
 deploy:
   provider: pypi
   user: jrhawley

@@ -3,12 +3,6 @@
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     # download conda
     curl -o miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
-    
-    # diagnose conda download issues
-    wc -l miniconda.sh
-    head miniconda.sh
-    echo ""
-    echo "Conda file check works out"
 
     # install conda
     # chmod +x miniconda.sh
@@ -33,6 +27,8 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     # create environment and install python
     conda create -n ${TOXENV} python=${PY_VER} -q
     conda activate ${TOXENV}
+    python setup.py install --install-scripts $HOME/miniconda3/bin
+else
+    python setup.py install
 fi
 
-python setup.py install
