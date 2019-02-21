@@ -27,7 +27,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     # create environment and install python
     conda create -n ${TOXENV} python=${PY_VER} -q
     conda activate ${TOXENV}
-    python setup.py install --force
+    sudo python setup.py install
 else
     python setup.py install
 fi
