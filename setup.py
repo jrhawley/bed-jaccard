@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 from os import path
 
 this_dir = path.abspath(path.dirname(__file__))
@@ -7,7 +7,7 @@ with open(path.join(this_dir, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='bed-jaccard',
-    version='0.1.4',
+    version='0.1.4.1',
     description='Quickly calculate and plot Jaccard index for BED files',
     url='http://github.com/jrhawley/bed-jaccard',
     author='James Hawley',
@@ -21,15 +21,17 @@ setup(
         "Natural Language :: English",
         "Topic :: Scientific/Engineering :: Bio-Informatics"
     ],
-    packages=['bed_jaccard'],
+    packages=find_packages(),
     install_requires=[
-        'numpy',
-        'pandas',
+        'numpy>=1.11',
+        'pandas >= 0.15.0',
         'pybedtools',
         'seaborn'
     ],
     entry_points={
-        'console_scripts': ['bed-jaccard=bed_jaccard.command_line:main']
+        'console_scripts': [
+            'bed-jaccard=bed_jaccard.command_line:main'
+        ]
     },
     scripts=['bin/bed-jaccard'],
     zip_safe=True,
