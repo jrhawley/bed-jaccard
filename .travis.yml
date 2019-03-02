@@ -1,16 +1,16 @@
 language: python
 python:
-  - "3.5"
-  - "3.6"
+- '3.5'
+- '3.6'
 install:
-  - python setup.py install
+- python setup.py install
 script:
-  - bed-jaccard --help
+- bed-jaccard --help
 deploy:
   provider: pypi
   user: jrhawley
   password:
-    secure: IgRCq+h2wmFHP5B+Hpn7CFTEN2biZ87W/TpphIw/5Vhr3bk0jyV+beXombt4CqhabzQ8py2jbRXSKyFooysA6aUqPCqe/5Ip3sQmOznMfPSgZMc/nMT0GGGYbnXTLJzUHS+Y7OAJ7QSb4OsZB/wFqD/Jd/yBP2aaN7RgoO35cs9rchjZN8QEq/QwO2Bda520oyBjlGih/jhm6ZbNJLU8jbo+hRfII8XxQ1Hd1zjfQS6LgbgjHPhsZfBjwMDTwCjMs4z8spolf1cE0M0fiAV1/VQvzxYoZJemvAwMZKlJsR/LZz0MpGllP+kcWlsItu+eo4NrvrGGNBktgL6ypmOmJ8NYvi3dZAM0jbrIeiE9gPXedxC2kbWva9eINMVatWBUfzVc+vkZmvAlAF6vzUIroF0jeUl78DvysTjllaiMLxFNXUqZB7v5gvSrIA/YzuFFhb8xTGNl/6KN9lT9637HQqVBG0nE2pEsNAs2f4ipe7LvJ7WatfB8W3YmOL+rKTzvXlk9fX0q4cx9A0xa7Ddj3JmBemq6hBw+O+XGRkzIP52k8J6ZUaoPuaZ6izRoh7b3IMKvJXVfdzEnUc86hb9UyNkATOZMrYoeyw0qdlf+ATl7vT5yrcHsgqy3Szt/7axcJpx3O3SoOzL4d6yfrqdPZSwlYRmjLmNObGVGyOukvSw=
+    secure: C62hmpIX4hwjm3DjfsEAbUe4xX3ppDuvEYKgHi/v4nvQP7n3jS/M6gr6YtzDf5VQb9nZOThklsYcNWStYWaV8leL7YO9QTzf4UPfLcSy2FZgsgHXX/XXAnD9t9x0sLups7NxbAquFOdvz6yTfpUMwRN7jD7kxJa+8Ihks3QwCLfnJKWQ7zC7320oqOZ+mMQM5oyUJDGWDH3/A5kE+A1SyQOkuJn856PgDUA7xFvdBJpkXpljKhGdzNd3+VaKu4Et9R6qakit+tKtnA+NMYFAlmyDZteVczYuSeVOXhn4LqARhKg0Pj8/f53jVBjq+hH6jMq//UE8Bkj4o2pob4xpYUg1cI1rDCznNtAIJyF8sin1/sHVf8eCDCxturMGoBTUZGMq7ETSQ40MkMcHTN2ecpQcibSQO+fUkDac1/l08v3SJAUCxP9QfVc6PJy/MR/VLe2IAObxaHXg577ziLbTeqOaV1a4lrItHNLQiUkgK5t9Xq1CdI/bnIYqDUkhRI838zVWUYsKFMyuSCid+X+oC3eH77Pb8Yq2W56/hdoRPPVFRjaKDpGDLV/MiLJLxyR45dEjoT7y6dJ23UgPOLNHiAcRufdcYJlw7o+stE/CcqsMM+C6DbGfahA6y3myUJCEZ2N2/0zhmVOTPMJFMj06Rb7s5cBufI/a7GV6rJUN/Kw=
   on:
     branch: master
   distributions: sdist bdist_wheel
