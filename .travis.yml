@@ -1,11 +1,11 @@
 language: python
 python:
-- '3.5'
-- '3.6'
+  - "3.5"
+  - "3.6"
 install:
-- python setup.py install
+  - python setup.py install
 script:
-- bed-jaccard --help
+  - bed-jaccard --help
 deploy:
   provider: pypi
   user: jrhawley
@@ -15,3 +15,5 @@ deploy:
     branch: master
   distributions: sdist bdist_wheel
   skip_existing: true
+after_deploy:
+  - sh .travis/conda-build.sh
