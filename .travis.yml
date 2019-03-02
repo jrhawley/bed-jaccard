@@ -16,4 +16,4 @@ deploy:
   distributions: sdist bdist_wheel
   skip_existing: true
 after_deploy:
-  - sh .travis/conda-build.sh
+  - ./.travis/conda-build.sh
