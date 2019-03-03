@@ -1,32 +1,32 @@
 # bed-jaccard
 
-[![version](https://img.shields.io/pypi/v/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
-[![conda](https://img.shields.io/badge/conda-bed--jaccard-brightgreen.svg)](https://anaconda.org/jrhawley/bed-jaccard)
-[![wheel](https://img.shields.io/pypi/wheel/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
-
-[![python version](https://img.shields.io/pypi/pyversions/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
-[![implementation](https://img.shields.io/pypi/implementation/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
-
-[![docs](https://readthedocs.org/projects/bed-jaccard/badge/?version=latest)](https://bed-jaccard.readthedocs.io/en/latest/?badge=latest)
-[![builds](https://travis-ci.com/jrhawley/bed-jaccard.svg?branch=master)](https://travis-ci.com/jrhawley/bed-jaccard)
-
-
 Python package for simple calculation and visualization of BED files
+
+[![PyPI](https://img.shields.io/pypi/v/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
+[![Wheel](https://img.shields.io/pypi/wheel/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
+[![Conda](https://img.shields.io/conda/pn/jrhawley/bed-jaccard.svg)](https://anaconda.org/jrhawley/bed-jaccard)
+
+[![Python version](https://img.shields.io/pypi/pyversions/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
+[![Implementation](https://img.shields.io/pypi/implementation/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
+
+[![Docs](https://readthedocs.org/projects/bed-jaccard/badge/?version=latest)](https://bed-jaccard.readthedocs.io/en/latest/?badge=latest)
+[![Builds](https://travis-ci.com/jrhawley/bed-jaccard.svg?branch=master)](https://travis-ci.com/jrhawley/bed-jaccard)
 
 ## Usage
 
-It can either be used in the command line by running `bed-jaccard bed [bed ...]`, or loaded in as a Python package with `import bed_jaccard`.
+```shell
+bed-jaccard bed [bed ...]
+```
 
 ## Installation
 
-### Pip
-
 ```shell
+# pip
 pip install bed-jaccard
-```
-
-### Conda
-
-```shell
+# conda
 conda install -c jrhawley bed-jaccard
 ```
+
+## Documentation
+
+For detailed documentation, see the [Read The Docs pages](https://bed-jaccard.readthedocs.io/en/latest/?badge=latest).
