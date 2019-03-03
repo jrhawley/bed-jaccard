@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # get python version from current environment
-python --version
 export PY_VER=$(python --version 2>&1 >/dev/null | cut -f 2 -d ' ' | cut -f 1-2 -d '.')
 echo $PY_VER
 
@@ -29,6 +28,9 @@ conda install python=${PY_VER} conda-build anaconda-client
 
 # pre-configure for auto upload to conda channel
 conda config --set anaconda_upload yes
+conda config --add channels bioconda
+conda config --add channels conda-forge
 
 # build recipe
+echo conda build --python "${PY_VER}" --token ${ANACONDA_UPLOAD_TOKEN} .travis/meta.yaml
 conda build --python "${PY_VER}" --token ${ANACONDA_UPLOAD_TOKEN} .travis/meta.yaml
