@@ -19,7 +19,7 @@ conda update -q conda
 conda info -a
 
 # get python version from current environment
-export PY_VER=$(which python 2>&1 >/dev/null | cut -f 2 -d ' ' | cut -f 1-2 -d '.')
+export PY_VER=$(python --version 2>&1 >/dev/null | cut -f 2 -d ' ' | cut -f 1-2 -d '.')
 echo $PY_VER
 
 # create conda environment to build

@@ -6,7 +6,10 @@
 
 [![python version](https://img.shields.io/pypi/pyversions/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
 [![implementation](https://img.shields.io/pypi/implementation/bed-jaccard.svg)](https://pypi.python.org/pypi/bed-jaccard)
+
 [![docs](https://readthedocs.org/projects/bed-jaccard/badge/?version=latest)](https://bed-jaccard.readthedocs.io/en/latest/?badge=latest)
+[![builds](https://travis-ci.com/jrhawley/bed-jaccard.svg?branch=master)](https://travis-ci.com/jrhawley/bed-jaccard)
+
 
 Python package for simple calculation and visualization of BED files
 
