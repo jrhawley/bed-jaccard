@@ -30,4 +30,4 @@ conda install python=${PY_VER} conda-build anaconda-client
 conda config --set anaconda_upload yes
 
 # build recipe
-conda build --token ${ANACONDA_UPLOAD_TOKEN} .travis/meta.yaml
+conda build --python ${PY_VER} --token ${ANACONDA_UPLOAD_TOKEN} .travis/meta.yaml
