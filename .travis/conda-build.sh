@@ -1,11 +1,7 @@
 #!/bin/bash
 
 # get python version from current environment
-export PY_V1=$(python --version)
-export PY_V2=$(python --version 2>&1 > /dev/null)
-export PY_VER=$(python --version 2>&1 >/dev/null | cut -f 2 -d ' ' | cut -f 1-2 -d '.')
-echo $PY_V1
-echo $PY_V2
+export PY_VER=$(python --version | cut -f 2 -d ' ' | cut -f 1-2 -d '.')
 echo $PY_VER
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
