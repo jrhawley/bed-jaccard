@@ -25,7 +25,7 @@ conda info -a
 # create conda environment to build
 conda init bash
 conda activate
-conda install python=${PY_VER} conda-build anaconda-client
+conda install python=${PY_VER} conda-build conda-verify anaconda-client
 
 # pre-configure for auto upload to conda channel
 conda config --set anaconda_upload yes
@@ -33,5 +33,6 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 
 # build recipe
-echo conda build --python "${PY_VER}" --token ${ANACONDA_UPLOAD_TOKEN} .travis/meta.yaml
-conda build --python "${PY_VER}" --token ${ANACONDA_UPLOAD_TOKEN} --user jrhawley .travis/meta.yaml 
+conda build --python "${PY_VER}" .travis/meta.yaml --user jrhawley
+# PKG_PATH=$(conda build --python "${PY_VER}" .travis/meta.yaml --output)
+# anaconda upload ${PKG_PATH} -u jrhawley
