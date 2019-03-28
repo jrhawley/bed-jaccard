@@ -33,6 +33,6 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 
 # build recipe
-conda build --python "${PY_VER}" .travis/meta.yaml --user jrhawley
+conda build --python "${PY_VER}" .travis/meta.yaml --user jrhawley --token ${ANACONDA_API_TOKEN}
 # PKG_PATH=$(conda build --python "${PY_VER}" .travis/meta.yaml --output)
 # anaconda upload ${PKG_PATH} -u jrhawley
