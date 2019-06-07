@@ -1,6 +1,15 @@
-def run(bed, prefix='jaccard'):
+import numpy as np
+import pandas as pd
+import pybedtools as pbt
+import matplotlib
+# handle matplot lib backend nonsense
+matplotlib.use('agg')
+import matplotlib.pyplot
+import seaborn as sns
+
+def multijaccard(bed, prefix='jaccard'):
     """
-    Run bedtools jaccard and plot as heatmap
+    Run bedtools jaccard for pairs of samples and plot as heatmap
 
     Parameters
     ==========
@@ -9,15 +18,6 @@ def run(bed, prefix='jaccard'):
     prefix : str
         Prefix for output files
     """
-    # import modules
-    import numpy as np
-    import pandas as pd
-    import pybedtools as pbt
-    import matplotlib
-    # handle matplot lib backend nonsense
-    matplotlib.use('agg')
-    import matplotlib.pyplot
-    import seaborn as sns
     # placeholder for resultant data
     results = pd.DataFrame(columns=[
         'Index 1', 'Index 2', 'Sample 1', 'Sample 2', 'intersection',

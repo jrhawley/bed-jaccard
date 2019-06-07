@@ -1,12 +1,12 @@
-{% set name = "bed-jaccard" %}
-{% set version = "0.1.4.1" %}
+{% set name = "bio-jtools" %}
+{% set version = "0.2" %}
 
 package:
   name: "{{ name|lower }}"
   version: "{{ version }}"
 
 source:
-  git_url: https://github.com/jrhawley/bed-jaccard.git
+  git_url: https://github.com/jrhawley/bio-jtools.git
   git_rev: {{ version }}
 
 build:
@@ -33,18 +33,19 @@ requirements:
 
 test:
   imports:
-    - bed_jaccard
+    - jtools.bed_jaccard
+    - jtools.filter_fastq
   commands:
-    - bed-jaccard --help
+    - bio-jtools --help
 
 about:
-  home: http://github.com/jrhawley/bed-jaccard
+  home: http://github.com/jrhawley/bio-jtools
   license: GPLv3
   license_family: GPL3
   license_file: LICENSE
-  summary: Quickly calculate and plot Jaccard index for BED files
+  summary: Various bioinformatics tools in one package
   doc_url: https://bed-jaccard.readthedocs.io/en/latest/
-  dev_url: http://github.com/jrhawley/bed-jaccard
+  dev_url: http://github.com/jrhawley/bio-jtools
 
 extra:
   recipe-maintainers:
