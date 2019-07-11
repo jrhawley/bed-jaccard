@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   entry_points:
-    - bed-jaccard=bed_jaccard.command_line:main
+    - jtoos=jtools._cli:main
   script: "$PYTHON -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
@@ -35,10 +35,10 @@ requirements:
 
 test:
   imports:
-    - jtools.bed_jaccard
-    - jtools.filter_fastq
+    - jtools.multijaccard
+
   commands:
-    - bio-jtools --help
+    - jtools --help
 
 about:
   home: http://github.com/jrhawley/bio-jtools
