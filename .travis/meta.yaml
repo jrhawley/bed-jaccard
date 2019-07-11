@@ -23,6 +23,7 @@ requirements:
     - pybedtools
     - python
     - seaborn
+    - tqdm
   run:
     - bedtools
     - numpy
@@ -30,6 +31,7 @@ requirements:
     - pybedtools
     - python
     - seaborn
+    - tqdm
 
 test:
   imports:

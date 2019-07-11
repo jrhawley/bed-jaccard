@@ -40,7 +40,8 @@ setup(
         'pandas >= 0.15.0',
         'pybedtools',
         'biopython',
-        'seaborn'
+        'seaborn',
+        'tqdm'
     ],
     entry_points={
         'console_scripts': [

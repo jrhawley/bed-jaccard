@@ -6,6 +6,7 @@ import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot
 import seaborn as sns
+from tqdm import tqdm
 
 def multijaccard(bed, prefix='jaccard'):
     """
@@ -22,11 +23,11 @@ def multijaccard(bed, prefix='jaccard'):
     results = pd.DataFrame(columns=[
         'Index 1', 'Index 2', 'Sample 1', 'Sample 2', 'intersection',
         'union-intersection', 'jaccard', 'n_intersections'])
-    for i, a in enumerate(bed):
+    for i, a in tqdm(enumerate(bed)):
         # initialize res dictionary
         res = {'Sample 1': a, 'Index 1': int(i)}
         bedA = pbt.BedTool(a)
-        for j, b in enumerate(bed[i:]):
+        for j, b in tqdm(enumerate(bed[i:])):
             bedB = pbt.BedTool(b)
             # add second sample file
             res['Sample 2'] = b
