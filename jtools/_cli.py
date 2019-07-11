@@ -46,7 +46,7 @@ def main():
 
     # validate command line arguments for the give sub-command
     # import packages after parsing to speed up command line responsiveness
-    if ARGS.command == 'multijaccard':
+    if ARGS.command == 'multi-jaccard':
         validate_multijaccard(ARGS)
         from .interval.multijaccard import multijaccard
         multijaccard(ARGS.bed, ARGS.prefix)
