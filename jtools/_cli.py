@@ -25,7 +25,20 @@ def validate_multijaccard(ARGS):
         'prefix': ARGS.prefix
     }
 
-    
+
+def validate_fastq_info(ARGS):
+    '''
+    Validate command line arguments for multijaccard
+
+    Parameters
+    ----------
+    ARGS : Namespace
+        Command line arguments
+    '''
+    if not path.exists(ARGS.fastq):
+        raise OSError('`{}` not found.'.format(ARGS.fastq))
+    return {'fastq': ARGS.fastq}
+
 
 def main():
     PARSER = argparse.ArgumentParser(
@@ -56,6 +69,18 @@ def main():
         help='Prefix for output files.',
         default='jaccard'
     )
+    
+    # fastq-info
+    fastqinfo_parser = SUBPARSERS.add_parser(
+        'fastq-info',
+        help='Extract metadata from read information in a FASTQ.'
+    )
+    fastqinfo_parser.add_argument(
+        'fastq',
+        type=str,
+        help="BED file(s)"
+    )
+    
 
     # parse arguments from command line
     ARGS = PARSER.parse_args()
@@ -65,6 +90,14 @@ def main():
     if ARGS.command == 'multi-jaccard':
         validated_args = validate_multijaccard(ARGS)
         from .interval.multijaccard import multijaccard
-        multijaccard(**validated_args)
+        func = multijaccard
+    elif ARGS.command == 'fastq-info':
+        validated_args = validate_fastq_info(ARGS)
+        from .fastx.fastq_info import fastq_info
+        func = fastq_info
     else:
         pass
+    val = func(**validated_args)
+    if val is not None:
+        print(val)
+        
