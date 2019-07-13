@@ -1,6 +1,7 @@
 import os.path as path
 import argparse
 
+
 def validate_multijaccard(ARGS):
     '''
     Validate command line arguments for multijaccard
@@ -10,13 +11,16 @@ def validate_multijaccard(ARGS):
     ARGS : Namespace
         Command line arguments
     '''
+    # check for files existing
     nonex_files = [b for b in ARGS.bed if not path.exists(b)]
     if len(nonex_files) != 0:
         raise OSError(' '.join([nonex_files[0], 'not found.']))
+    # check there are the same number of names as BED files
     if ARGS.names is not None:
         names = ARGS.names.split(',')
         if len(names) != len(ARGS.bed):
-            raise ValueError('`names` and `beds` parameters must be the same length')
+            raise ValueError(
+                '`names` and `beds` parameters must be the same length')
     else:
         names = None
     return {
@@ -35,6 +39,7 @@ def validate_fastq_info(ARGS):
     ARGS : Namespace
         Command line arguments
     '''
+    # check file exists
     if not path.exists(ARGS.fastq):
         raise OSError('`{}` not found.'.format(ARGS.fastq))
     return {'fastq': ARGS.fastq}
@@ -46,7 +51,7 @@ def main():
     )
     SUBPARSERS = PARSER.add_subparsers(
         title='Sub-commands', dest='command', metavar='<command>')
-    
+
     # multi-jaccard
     multijaccard_parser = SUBPARSERS.add_parser(
         'multi-jaccard',
@@ -69,7 +74,7 @@ def main():
         help='Prefix for output files.',
         default='jaccard'
     )
-    
+
     # fastq-info
     fastqinfo_parser = SUBPARSERS.add_parser(
         'fastq-info',
@@ -80,7 +85,6 @@ def main():
         type=str,
         help="BED file(s)"
     )
-    
 
     # parse arguments from command line
     ARGS = PARSER.parse_args()
@@ -97,7 +101,7 @@ def main():
         func = fastq_info
     else:
         pass
+    # using the func = ... format allows for a single universal function call
     val = func(**validated_args)
     if val is not None:
         print(val)
-        
