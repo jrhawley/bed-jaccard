@@ -1,12 +1,14 @@
+from tqdm import tqdm
+import seaborn as sns
+import matplotlib.pyplot
 import numpy as np
 import pandas as pd
 import pybedtools as pbt
+
 import matplotlib
 # handle matplot lib backend nonsense
 matplotlib.use('agg')
-import matplotlib.pyplot
-import seaborn as sns
-from tqdm import tqdm
+
 
 def multijaccard(beds, names=None, prefix='jaccard'):
     """
@@ -33,7 +35,7 @@ def multijaccard(beds, names=None, prefix='jaccard'):
         else:
             res = {'Sample 1': a, 'Label 1': int(i)}
         bedA = pbt.BedTool(a)
-        for j, b in enumerate(tqdm(beds[i:])):
+        for j, b in enumerate(beds[i:]):
             bedB = pbt.BedTool(b)
             # add second sample file
             res['Sample 2'] = b
