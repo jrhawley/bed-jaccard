@@ -28,7 +28,6 @@ conda activate
 conda install python=${PY_VER} conda-build conda-verify anaconda-client
 
 # pre-configure for auto upload to conda channel
-conda config --set anaconda_upload yes
 conda config --add channels bioconda
 conda config --add channels conda-forge
 
@@ -38,4 +37,6 @@ mkdir -p conda-bld
 conda build --python "${PY_VER}" --no-anaconda-upload --output-folder conda-bld .travis/meta.yaml
 
 echo "Converting and deploying to anaconda.org"
-anaconda -t ${ANACONDA_API_TOKEN} upload --all conda-bld/linux-64/bio-jtools-*.tar.bz2
+anaconda --verbose --token ${ANACONDA_API_TOKEN} upload --force --all conda-bld/**/bio-jtools-*.tar.bz2
+
+exit 0
