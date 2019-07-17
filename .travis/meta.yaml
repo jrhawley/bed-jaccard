@@ -35,7 +35,10 @@ requirements:
 
 test:
   imports:
-    - jtools.multijaccard
+    - jtools.align
+    - jtools.fastx
+    - jtools.interval
+
 
   commands:
     - jtools --help
