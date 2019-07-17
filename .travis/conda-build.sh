@@ -33,6 +33,9 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 
 # build recipe
-conda build --python "${PY_VER}" .travis/meta.yaml --user jrhawley --token ${ANACONDA_API_TOKEN}
-# PKG_PATH=$(conda build --python "${PY_VER}" .travis/meta.yaml --output)
-# anaconda upload ${PKG_PATH} -u jrhawley
+echo "Building conda package"
+mkdir -p conda-bld
+conda build --python "${PY_VER}" --no-anaconda-upload --output-folder conda-bld .travis/meta.yaml
+
+echo "Converting and deploying to anaconda.org"
+anaconda -t ${ANACONDA_API_TOKEN} upload --all conda-bld/linux-64/bio-jtools-*.tar.bz2

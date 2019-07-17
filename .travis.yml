@@ -7,13 +7,16 @@ install:
 script:
   - jtools --help
 deploy:
-  provider: pypi
-  user: jrhawley
-  password:
-    secure: C62hmpIX4hwjm3DjfsEAbUe4xX3ppDuvEYKgHi/v4nvQP7n3jS/M6gr6YtzDf5VQb9nZOThklsYcNWStYWaV8leL7YO9QTzf4UPfLcSy2FZgsgHXX/XXAnD9t9x0sLups7NxbAquFOdvz6yTfpUMwRN7jD7kxJa+8Ihks3QwCLfnJKWQ7zC7320oqOZ+mMQM5oyUJDGWDH3/A5kE+A1SyQOkuJn856PgDUA7xFvdBJpkXpljKhGdzNd3+VaKu4Et9R6qakit+tKtnA+NMYFAlmyDZteVczYuSeVOXhn4LqARhKg0Pj8/f53jVBjq+hH6jMq//UE8Bkj4o2pob4xpYUg1cI1rDCznNtAIJyF8sin1/sHVf8eCDCxturMGoBTUZGMq7ETSQ40MkMcHTN2ecpQcibSQO+fUkDac1/l08v3SJAUCxP9QfVc6PJy/MR/VLe2IAObxaHXg577ziLbTeqOaV1a4lrItHNLQiUkgK5t9Xq1CdI/bnIYqDUkhRI838zVWUYsKFMyuSCid+X+oC3eH77Pb8Yq2W56/hdoRPPVFRjaKDpGDLV/MiLJLxyR45dEjoT7y6dJ23UgPOLNHiAcRufdcYJlw7o+stE/CcqsMM+C6DbGfahA6y3myUJCEZ2N2/0zhmVOTPMJFMj06Rb7s5cBufI/a7GV6rJUN/Kw=
-  on:
-    branch: master
-  distributions: sdist bdist_wheel
-  skip_existing: true
-after_deploy:
-  - ./.travis/build.sh
+  - provider: pypi
+    user: jrhawley
+    password:
+      secure: C62hmpIX4hwjm3DjfsEAbUe4xX3ppDuvEYKgHi/v4nvQP7n3jS/M6gr6YtzDf5VQb9nZOThklsYcNWStYWaV8leL7YO9QTzf4UPfLcSy2FZgsgHXX/XXAnD9t9x0sLups7NxbAquFOdvz6yTfpUMwRN7jD7kxJa+8Ihks3QwCLfnJKWQ7zC7320oqOZ+mMQM5oyUJDGWDH3/A5kE+A1SyQOkuJn856PgDUA7xFvdBJpkXpljKhGdzNd3+VaKu4Et9R6qakit+tKtnA+NMYFAlmyDZteVczYuSeVOXhn4LqARhKg0Pj8/f53jVBjq+hH6jMq//UE8Bkj4o2pob4xpYUg1cI1rDCznNtAIJyF8sin1/sHVf8eCDCxturMGoBTUZGMq7ETSQ40MkMcHTN2ecpQcibSQO+fUkDac1/l08v3SJAUCxP9QfVc6PJy/MR/VLe2IAObxaHXg577ziLbTeqOaV1a4lrItHNLQiUkgK5t9Xq1CdI/bnIYqDUkhRI838zVWUYsKFMyuSCid+X+oC3eH77Pb8Yq2W56/hdoRPPVFRjaKDpGDLV/MiLJLxyR45dEjoT7y6dJ23UgPOLNHiAcRufdcYJlw7o+stE/CcqsMM+C6DbGfahA6y3myUJCEZ2N2/0zhmVOTPMJFMj06Rb7s5cBufI/a7GV6rJUN/Kw=
+    on:
+      branch: master
+    distributions: sdist bdist_wheel
+    skip_existing: true
+  - provider: script
+    script: .travis/conda-build.sh
+    on:
+      branch: master
+    skip_cleanup: true
