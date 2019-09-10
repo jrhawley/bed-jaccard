@@ -45,6 +45,21 @@ def validate_fastq_info(ARGS):
     return {'fastq': ARGS.fastq}
 
 
+def validate_filter_qname(ARGS):
+    '''
+    Validate command line arguments for filter-qname
+
+    Parameters
+    ----------
+    ARGS : Namespace
+        Command line arguments
+    '''
+    # check file exists
+    if not path.exists(ARGS.fastq):
+        raise OSError('`{}` not found.'.format(ARGS.fastq))
+    return {'bam': ARGS.fastq}
+
+
 def main():
     PARSER = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
@@ -86,6 +101,33 @@ def main():
         help="BED file(s)"
     )
 
+    # filter-qname
+    filter_qname_parser = SUBPARSERS.add_parser(
+        'filter-qname',
+        help='Filter a SAM/BAM file by its query names'
+    )
+    filter_qname_parser.add_argument(
+
+    )
+    filter_qname_parser.add_argument(
+        'bam',
+        type=str,
+        help='Query name-sorted BAM file to be filtered'
+    )
+    filter_qname_parser.add_argument(
+        'ids',
+        type=str,
+        help='Text file containing IDs to be removed'
+    )
+    filter_qname_parser.add_argument(
+        '-o', '--output',
+        type=str,
+        help='Output file',
+        default='filtered.bam'
+    )
+    ARGS = PARSER.parse_args()
+    main(ARGS.bam, ARGS.ids, ARGS.output)
+
     # parse arguments from command line
     ARGS = PARSER.parse_args()
 
@@ -99,6 +141,10 @@ def main():
         validated_args = validate_fastq_info(ARGS)
         from .fastx.fastq_info import fastq_info
         func = fastq_info
+    elif ARGS.command == 'filter-qname':
+        validated_args = validate_filter_qname(ARGS)
+        from .align.filter_qname import filter_qname
+        func = filter_qname
     else:
         pass
     # using the func = ... format allows for a single universal function call
