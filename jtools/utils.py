@@ -29,6 +29,12 @@ def detect_filetype_from_path(path):
         return 'BCF'
     elif path.endswith('.maf'):
         return 'MAF'
+    elif path.endswith('.tbx'):
+        return 'TABIX'
+    elif path.endswith('.gtf'):
+        return 'TABIX'
+    elif path.endswith('.gff'):
+        return 'TABIX'
     elif path.endswith('.bed'):
         return 'BED'
     elif path.endswith('.bedpe'):
@@ -56,6 +62,7 @@ def validate_filetype(path):
         'VCF': validate_vcf,
         'BCF': validate_bcf,
         'MAF': validate_maf,
+        'TABIX': validate_tabix,
         'BED': validate_bed,
         'BEDPE': validate_bedpe
     }
@@ -148,6 +155,17 @@ def validate_bcf(path):
 def validate_maf(path):
     '''
     Validate MAF file
+
+    Parameters
+    ----------
+    path : str
+        File to check
+    '''
+    raise NotImplementedError()
+
+def validate_tabix(path):
+    '''
+    Validate TABIX file
 
     Parameters
     ----------
