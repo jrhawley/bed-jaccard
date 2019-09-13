@@ -145,6 +145,10 @@ def main():
         validated_args = validate_filter_qname(ARGS)
         from .align.filter_qname import filter_qname
         func = filter_qname
+    elif ARGS.command == 'kspec':
+        validated_args = validate_kspec(ARGS)
+        from .fastx.kspec import kspec
+        func = kspec
     else:
         pass
     # using the func = ... format allows for a single universal function call
