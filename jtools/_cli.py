@@ -60,6 +60,21 @@ def validate_filter_qname(ARGS):
     return {'bam': ARGS.fastq}
 
 
+def validate_kspec(ARGS):
+    '''
+    Validate command line arguments for kspec
+
+    Parameters
+    ----------
+    ARGS : Namespace
+        Command line arguments
+    '''
+    # check file exists
+    if not path.exists(ARGS.fx):
+        raise OSError('`{}` not found.'.format(ARGS.fx))
+    return {'fastxfile': ARGS.fx, 'k': ARGS.k}
+
+
 def main():
     PARSER = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
@@ -107,9 +122,6 @@ def main():
         help='Filter a SAM/BAM file by its query names'
     )
     filter_qname_parser.add_argument(
-
-    )
-    filter_qname_parser.add_argument(
         'bam',
         type=str,
         help='Query name-sorted BAM file to be filtered'
@@ -125,8 +137,22 @@ def main():
         help='Output file',
         default='filtered.bam'
     )
-    ARGS = PARSER.parse_args()
-    main(ARGS.bam, ARGS.ids, ARGS.output)
+
+    # k-mer spectrum
+    kspec_parser = SUBPARSERS.add_parser(
+        'kspec',
+        help='Calculate the k-mer spectrum for a FASTX file'
+    )
+    kspec_parser.add_argument(
+        'fx',
+        type=str,
+        help='FASTX file to parse'
+    )
+    kspec_parser.add_argument(
+        'k',
+        type=int,
+        help='Size of k-mers'
+    )
 
     # parse arguments from command line
     ARGS = PARSER.parse_args()
