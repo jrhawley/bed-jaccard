@@ -1,6 +1,7 @@
 from __future__ import division, absolute_import, print_function
 import pysam
 from tqdm import tqdm
+from ..utils import detect_filetype_from_path
 
 def samprint(alignment, output=None):
     '''
@@ -26,11 +27,12 @@ def filter_qname(bamfile, idfile, outfile=None):
     # read in name-sorted BAM file
     bam = pysam.AlignmentFile(bamfile, "rb")
     # output BAM file
-    if outfile is None:
+    ftype = detect_filetype_from_path(outfile)
+    if ftype is None:
         output = None
-    elif outfile.endswith('sam'):
+    elif ftype == 'SAM':
         output = pysam.AlignmentFile(outputfile, "w", template=bam)
-    elif outfile.endswith('bam'):
+    elif fytpe == 'BAM':
         output = pysam.AlignmentFile(outputfile, "wb", template=bam)
     else:
         raise ValueError("Unknown output file format for `outfile`: {}".format(outfile))
@@ -51,9 +53,9 @@ def filter_qname(bamfile, idfile, outfile=None):
             # if this is the last ID
             if n_ids == 1:
                 # write remaining reads to new file and break out of while loop
-                output.write(read)
+                samprint(read, output)
                 for r in bam:
-                    output.write(r)
+                    samprint(read, output)
                 break
             # otherwise pop that ID, try again
             else:
@@ -64,8 +66,7 @@ def filter_qname(bamfile, idfile, outfile=None):
             read = next(reads)
         # if read name is less that top of stack, write it and move on
         else:
-            output.write(read)
+            samprint(read, output)
             read = next(reads)
         pbar.update()
-    output.close()
-
+    output.close() if output is not None
