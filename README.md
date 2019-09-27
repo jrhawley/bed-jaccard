@@ -15,7 +15,7 @@ Python package for simple calculation and visualization of BED files
 ## Usage
 
 ```shell
-bio-jtools bed [bed ...]
+bio-jtools <sub-command>
 ```
 
 ## Installation
@@ -29,4 +29,4 @@ conda install -c jrhawley bio-jtools
 
 ## Documentation
 
-For detailed documentation, see the [Read The Docs pages](https://bio-jtools.readthedocs.io/en/latest/?badge=latest).
+For detailed documentation, see the [GitHub Wiki](https://github.com/jrhawley/bio-jtools/wiki).
