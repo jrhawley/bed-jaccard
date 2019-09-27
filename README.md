@@ -15,7 +15,7 @@ Python package for simple calculation and visualization of BED files
 ## Usage
 
 ```shell
-bio-jtools <sub-command>
+jtools <sub-command>
 ```
 
 ## Installation
