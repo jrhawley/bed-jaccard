@@ -50,7 +50,9 @@ def filter_qname(bamfile, idfile, outfile=None):
     last_q = reads.query_name
     while True:
         if read.query_name < last_q:
-            raise ValueError('Alignment file is not sorted. {} < {}'.format(read.query_name, last_q))
+            raise ValueError(
+                'Alignment file is not sorted. {} < {}'.format(read.query_name, last_q)
+            )
         # if read name is greater than current top of stack
         if read.query_name > ids[-1]:
             # if this is the last ID
@@ -70,6 +72,7 @@ def filter_qname(bamfile, idfile, outfile=None):
         # if read name is less that top of stack, write it and move on
         else:
             samprint(read, output)
+            last_q = read.query_name
             read = next(reads)
         pbar.update()
     if output is not None:
