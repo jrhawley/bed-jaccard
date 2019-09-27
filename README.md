@@ -9,7 +9,7 @@ Python package for simple calculation and visualization of BED files
 [![Python version](https://img.shields.io/pypi/pyversions/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
 [![Implementation](https://img.shields.io/pypi/implementation/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
 
-[![Builds](https://travis-ci.com/jrhawley/bio-jtools.svg?branch=master)](https://travis-ci.com/jrhawley/bio-jtools)
+[![Builds](https://github.com/jrhawley/bio-jtools/workflows/Python%20packaging/badge.svg)](https://travis-ci.com/jrhawley/bio-jtools)
 
 ## Usage
 
@@ -22,6 +22,7 @@ jtools <sub-command>
 ```shell
 # pip
 pip install bio-jtools
+
 # conda
 conda install -c jrhawley bio-jtools
 ```
