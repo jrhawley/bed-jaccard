@@ -1,0 +1,49 @@
+name: Conda packaging
+
+on:
+  push:
+    branches:
+    - master
+    - release/*
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.6]
+        os: [macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Conda with Python ${{ matrix.python-version }}
+      run: |
+        # check OS to get correct URL
+        if [[ $(uname) == 'Darwin' ]]; then
+          export URL='https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh'
+        elif [[ $(uname) == 'Linux' ]]; then
+          export URL='https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh'
+        fi
+        # download anaconda installer
+        curl -o miniconda.sh $URL
+        # execut to install anaconda
+        sh miniconda.sh -b -p $HOME/miniconda3
+        export PATH="$HOME/miniconda3/bin:$PATH"
+        # configure
+        conda config --set always_yes yes --set changeps1 no
+        conda update -q conda
+        conda config --add channels bioconda
+        conda config --add channels conda-forge
+        conda info -a
+    - name: Install dependencies
+      run: |
+        conda init bash
+        conda activate
+        conda install python=${{ matrix.python-version }} conda-build conda-verify anaconda-client
+    - name: Build
+      env:
+        ANACONDA_KEY: ${{ secrets.ANACONDA_KEY }}
+      run: |
+        conda build --python ${{ matrix.python-version }} --output-folder conda-bld --token $ANACONDA_KEY --user jrhawley --verify .conda/meta.yaml

@@ -3,6 +3,7 @@ import pysam
 from tqdm import tqdm
 from ..utils import detect_filetype_from_path
 
+
 def samprint(alignment, output=None):
     '''
     Print to output file or STDOUT if none is supplied
@@ -18,7 +19,7 @@ def samprint(alignment, output=None):
         print(alignment)
     else:
         output.write(alignment)
-    
+
 
 def filter_qname(bamfile, idfile, outfile=None):
     '''
@@ -31,9 +32,9 @@ def filter_qname(bamfile, idfile, outfile=None):
     if ftype is None:
         output = None
     elif ftype == 'SAM':
-        output = pysam.AlignmentFile(outputfile, "w", template=bam)
-    elif fytpe == 'BAM':
-        output = pysam.AlignmentFile(outputfile, "wb", template=bam)
+        output = pysam.AlignmentFile(outfile, "w", template=bam)
+    elif ftype == 'BAM':
+        output = pysam.AlignmentFile(outfile, "wb", template=bam)
     else:
         raise ValueError("Unknown output file format for `outfile`: {}".format(outfile))
     #  read in IDs to be removed (list(set(...)) to only keep unique IDs)
@@ -41,13 +42,17 @@ def filter_qname(bamfile, idfile, outfile=None):
     # sort IDs to match BAM for efficient processing (destructive function)
     ids.sort(key=str.lower, reverse=True)
     n_ids = len(ids)
-    # variable for ensuring BAM is sorted by query name
-    last_q = None
     # progress bar using total alignment counts
     pbar = tqdm()
     reads = bam.fetch(until_eof=True)
     read = next(reads)
+    # variable for ensuring BAM is sorted by query name
+    last_q = reads.query_name
     while True:
+        if read.query_name < last_q:
+            raise ValueError(
+                'Alignment file is not sorted. {} < {}'.format(read.query_name, last_q)
+            )
         # if read name is greater than current top of stack
         if read.query_name > ids[-1]:
             # if this is the last ID
@@ -67,6 +72,8 @@ def filter_qname(bamfile, idfile, outfile=None):
         # if read name is less that top of stack, write it and move on
         else:
             samprint(read, output)
+            last_q = read.query_name
             read = next(reads)
         pbar.update()
-    output.close() if output is not None
+    if output is not None:
+        output.close()
