@@ -9,7 +9,7 @@ Python package for simple calculation and visualization of BED files
 [![Python version](https://img.shields.io/pypi/pyversions/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
 [![Implementation](https://img.shields.io/pypi/implementation/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
 
-[![Docs](https://readthedocs.org/projects/bio-jtools/badge/?version=latest)](https://bio-jtools.readthedocs.io/en/latest/?badge=latest)
+[![Docs](https://github.com/jrhawley/bio-jtools/wiki)](https://github.com/jrhawley/bio-jtools/wiki)
 [![Builds](https://travis-ci.com/jrhawley/bio-jtools.svg?branch=master)](https://travis-ci.com/jrhawley/bio-jtools)
 
 ## Usage
