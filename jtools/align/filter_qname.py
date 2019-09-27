@@ -69,4 +69,5 @@ def filter_qname(bamfile, idfile, outfile=None):
             samprint(read, output)
             read = next(reads)
         pbar.update()
-    output.close() if output is not None
+    if output is not None:
+        output.close()
