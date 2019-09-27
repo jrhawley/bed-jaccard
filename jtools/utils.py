@@ -54,7 +54,7 @@ def validate_filetype(path):
     '''
     ftype = detect_filetype_from_path(path)
     func_switch = {
-        'SAM' : validate_sam,
+        'SAM': validate_sam,
         'BAM': validate_bam,
         'CRAM': validate_cram,
         'FASTA': validate_fasta,
@@ -68,6 +68,7 @@ def validate_filetype(path):
     }
     return func_switch[ftype](path)
 
+
 def validate_sam(path):
     '''
     Validate SAM file
@@ -79,7 +80,6 @@ def validate_sam(path):
     '''
     raise NotImplementedError()
 
-)
 
 def validate_bam(path):
     '''
@@ -92,7 +92,6 @@ def validate_bam(path):
     '''
     raise NotImplementedError()
 
-)
 
 def validate_cram(path):
     '''
@@ -105,7 +104,6 @@ def validate_cram(path):
     '''
     raise NotImplementedError()
 
-)
 
 def validate_fasta(path):
     '''
@@ -130,6 +128,7 @@ def validate_fastq(path):
     '''
     raise NotImplementedError()
 
+
 def validate_vcf(path):
     '''
     Validate VCF file
@@ -140,6 +139,7 @@ def validate_vcf(path):
         File to check
     '''
     raise NotImplementedError()
+
 
 def validate_bcf(path):
     '''
@@ -152,6 +152,7 @@ def validate_bcf(path):
     '''
     raise NotImplementedError()
 
+
 def validate_maf(path):
     '''
     Validate MAF file
@@ -162,6 +163,7 @@ def validate_maf(path):
         File to check
     '''
     raise NotImplementedError()
+
 
 def validate_tabix(path):
     '''
@@ -174,6 +176,7 @@ def validate_tabix(path):
     '''
     raise NotImplementedError()
 
+
 def validate_bed(path):
     '''
     Validate BED file
@@ -184,6 +187,7 @@ def validate_bed(path):
         File to check
     '''
     raise NotImplementedError()
+
 
 def validate_bedpe(path):
     '''
