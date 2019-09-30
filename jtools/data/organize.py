@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 from os import listdir, mkdir, rename
 import os.path as path
-from . import DIRNAME_REGEX, FASTQ_FILENAME_REGEX, RESERVED_DIRS, RESERVED_FILENAMES, README_STR, CLUSTER_STR, SETUP_STR
+from . import DIRNAME_REGEX, FASTQ_FILENAME_REGEX, RESERVED_DIRS, RESERVED_FILENAMES, README_STR, CLUSTER_STR, SETUP_STR, SNAKEFILE_STR
 
 
 def fetch_seq_info(dirname):
@@ -87,7 +87,6 @@ def create_config(fastq_dir, outfile):
         # extract sample information from file name
         m = pattern.match(f)
         if m is None:
-            print('Skipping {}'.format(f))
             continue
         name = m.group(1)
         index = m.group(2)
@@ -155,7 +154,10 @@ def create_snakefile(seqtype, outfile):
     outfile : str
         Output config file to create
     '''
-    pass
+    # write to Snakefile
+    fh = open(outfile, 'w')
+    fh.write(SNAKEFILE_STR)
+    fh.close()
 
 
 def organize(indir, outdir=None, seqtype='mix'):
@@ -227,16 +229,14 @@ def organize(indir, outdir=None, seqtype='mix'):
     setup_log['fastq'] = create_config(path.join(indir, RESERVED_DIRS[1]), reserved_files[2])
     # add creation of config file to setup log
     setup_log['res_files'].append(reserved_files[2])
-    # if not path.exists(reserved_files[3]):
-    #     create_snakefile(seqtype, reserved_files[3])
-    #     # add action to setup log
-    #     setup_log['res_files'].append(reserved_files[3])
+    if not path.exists(reserved_files[3]):
+        create_snakefile(seqtype, reserved_files[3])
+        # add action to setup log
+        setup_log['res_files'].append(reserved_files[3])
     # reformat setup_log for printing
     setup_log_printable = {}
-    print(setup_log)
     for k, v in setup_log.items():
         if len(v) > 0:
-            print(v)
             setup_log_printable[k] = '\n'.join(setup_log[k])
         else:
             setup_log_printable[k] = ''

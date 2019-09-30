@@ -29,7 +29,6 @@ CONFIG = CONFIG.loc[~CONFIG.Sample.str.startswith('#'), :]
 REPORT_DIR = 'Reports'
 FASTQ_DIR = 'FASTQs''
 ALIGN_DIR = 'Aligned'
-{extra_dirs}
 
 SAMPLES = CONFIG['Sample'].tolist()
 READS = [1, 2]
@@ -38,7 +37,7 @@ BWT2_IDX = '/cluster/tools/data/genomes/human/hg38/iGenomes/Sequence/Bowtie2Inde
 CHRS = ['chr' + str(i) for i in list(range(1, 23)) + ['X', 'Y']]
 
 wildcard_constraints:
-    sample = '[0-9]+',
+    sample = '[A-Za-z0-9-]+',
     lane = '[1-4]',
     read = '[1-2]'
 
