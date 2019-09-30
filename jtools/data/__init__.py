@@ -1,6 +1,7 @@
 DIRNAME_REGEX = '^([0-9]{2})(0?[1-9]|1[012])(0[1-9]|[12]\\d|3[01])_(\\w{6})_(\\d{4})_(A|B)(\\w{9})/?$'
+FASTQ_FILENAME_REGEX = '^([A-Za-z0-9-_]+)_S([1-9][0-9]?)_L00(\\d)_(I1|R[1-3])_001\\.fastq(\\.gz)?$'
 RESERVED_DIRS = ['Reports', 'FASTQs', 'Trimmed', 'Aligned']
-RESERVED_FILENAMES = ['README.md', 'cluster.yaml', 'config.tsv', 'Snakefile']
+RESERVED_FILENAMES = ['README.md', 'cluster.yaml', 'config.tsv', 'Snakefile', 'setup.log']
 
 README_STR = '''# Summary
 
@@ -16,7 +17,7 @@ CLUSTER_STR = '''__default__:
 
 '''
 
-SNAKEFILE_DEFAULT = '''import pandas as pd
+SNAKEFILE_STR = '''import pandas as pd
 import os.path as path
 
 # =============================================================================
@@ -109,5 +110,19 @@ rule sort_bam:
         idx = '{{file}}.sorted.bam.bai'
     shell:
         'sambamba sort -t 8 --tmpdir . -p {{input}}'
+
+'''
+
+SETUP_STR = '''# Making directories
+{mkdir}
+
+# Moving files
+{mv}
+
+# Creating reserved files
+{res_files}
+
+# Formatting FASTQ filenames
+{fastq}
 
 '''
