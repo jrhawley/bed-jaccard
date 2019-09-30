@@ -83,7 +83,7 @@ def validate_organize(ARGS):
             '`{}` does not match the expected folder name format.'.format(ARGS.dir),
             'Should match `YYMMDD_InstrumentSerialNumber_RunNumber_(A|B)FlowcellID`.'
         )
-    return {'dir': ARGS.dir}
+    return {'indir': ARGS.dir, 'outdir': ARGS.outdir, 'seqtype': ARGS.type}
 
 
 def main():
@@ -133,9 +133,6 @@ def main():
         help='Filter a SAM/BAM file by its query names'
     )
     filter_qname_parser.add_argument(
-
-    )
-    filter_qname_parser.add_argument(
         'bam',
         type=str,
         help='Query name-sorted BAM file to be filtered'
@@ -151,8 +148,6 @@ def main():
         help='Output file',
         default='filtered.bam'
     )
-    ARGS = PARSER.parse_args()
-    main(ARGS.bam, ARGS.ids, ARGS.output)
 
     # org
     org_parser = SUBPARSERS.add_parser(
