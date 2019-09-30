@@ -1,5 +1,6 @@
 import os.path as path
 import argparse
+import re
 
 
 def validate_multijaccard(ARGS):
@@ -58,6 +59,31 @@ def validate_filter_qname(ARGS):
     if not path.exists(ARGS.fastq):
         raise OSError('`{}` not found.'.format(ARGS.fastq))
     return {'bam': ARGS.fastq}
+
+
+def validate_organize(ARGS):
+    '''
+    Validate command line arguments for organize
+
+    Parameters
+    ----------
+    ARGS : Namespace
+        Command line arguments
+    '''
+    # check folder exists
+    if not path.exists(ARGS.dir):
+        raise OSError('`{}` not found.'.format(ARGS.dir))
+    # check directory path matches expected regex for raw sequencing data
+    # matches YYMMDD_InstrumentSerialNumber_RunNumber_(A|B)FlowcellID
+    pattern = re.compile(
+        '^[0-9]{2}(0?[1-9]|1[012])(0[1-9]|[12]\\d|3[01])_\\w{6}_\\d{4}_(A|B)\\w{9}/?$'
+    )
+    if not pattern.fullmatch(ARGS.dir):
+        raise OSError(
+            '`{}` does not match the expected folder name format.'.format(ARGS.dir),
+            'Should match `YYMMDD_InstrumentSerialNumber_RunNumber_(A|B)FlowcellID`.'
+        )
+    return {'dir': ARGS.dir}
 
 
 def main():
@@ -128,6 +154,29 @@ def main():
     ARGS = PARSER.parse_args()
     main(ARGS.bam, ARGS.ids, ARGS.output)
 
+    # org
+    org_parser = SUBPARSERS.add_parser(
+        'org',
+        help='Organize a batch of raw sequencing data'
+    )
+    org_parser.add_argument(
+        'dir',
+        type=str,
+        help='Input directory to organize'
+    )
+    org_parser.add_argument(
+        '-o', '--outdir',
+        type=str,
+        help='New path for input directory'
+    )
+    org_parser.add_argument(
+        '-t', '--type',
+        type=str,
+        choices=['atac', 'dname', 'chip', 'dna', 'rna', 'hic', 'mix'],
+        help='Type of sequencing data in batch.',
+        default='mix'
+    )
+
     # parse arguments from command line
     ARGS = PARSER.parse_args()
 
@@ -145,6 +194,10 @@ def main():
         validated_args = validate_filter_qname(ARGS)
         from .align.filter_qname import filter_qname
         func = filter_qname
+    elif ARGS.command == 'org':
+        validated_args = validate_organize(ARGS)
+        from .data.organize import organize
+        func = organize
     else:
         pass
     # using the func = ... format allows for a single universal function call
