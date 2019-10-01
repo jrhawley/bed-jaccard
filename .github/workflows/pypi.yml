@@ -43,7 +43,7 @@ jobs:
         echo "---"
         ls dist
     - name: Publish to PyPI
-      if: startsWith(github.event.ref, 'refs/tags')
+      # if: startsWith(github.event.ref, 'refs/tags')
       uses: /pypa/gh-action-pypi-publish@master
       with:
         user: __token__
