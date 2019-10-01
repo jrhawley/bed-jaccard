@@ -14,7 +14,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.6, 3.7]
+        python-version: [3.4, 3.5, 3.6, 3.7]
         os: [macOS-latest, ubuntu-latest]
 
     steps:
@@ -43,7 +43,7 @@ jobs:
         echo "---"
         ls dist
     - name: Publish to PyPI
-      # if: startsWith(github.event.ref, 'refs/tags')
+      if: startsWith(matrix.os, 'ubuntu')
       uses: /pypa/gh-action-pypi-publish@master
       with:
         user: __token__
