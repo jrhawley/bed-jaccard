@@ -1,5 +1,5 @@
 {% set name = "bio-jtools" %}
-{% set version = "0.2" %}
+{% set version = "0.2.1" %}
 
 package:
   name: "{{ name|lower }}"
@@ -38,7 +38,7 @@ test:
     - jtools.align
     - jtools.fastx
     - jtools.interval
-
+    - jtools.data
 
   commands:
     - jtools --help
@@ -49,7 +49,6 @@ about:
   license_family: GPL3
   license_file: LICENSE
   summary: Various bioinformatics tools in one package
-  doc_url: https://bed-jaccard.readthedocs.io/en/latest/
   dev_url: http://github.com/jrhawley/bio-jtools
 
 extra:
