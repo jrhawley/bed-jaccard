@@ -70,18 +70,18 @@ def validate_organize(ARGS):
     ARGS : Namespace
         Command line arguments
     '''
+    from data import DIRNAME_REGEX
     # check folder exists
     if not path.exists(ARGS.dir):
         raise OSError('`{}` not found.'.format(ARGS.dir))
     # check directory path matches expected regex for raw sequencing data
     # matches YYMMDD_InstrumentSerialNumber_RunNumber_(A|B)FlowcellID
-    pattern = re.compile(
-        '^[0-9]{2}(0?[1-9]|1[012])(0[1-9]|[12]\\d|3[01])_\\w{6}_\\d{4}_(A|B)\\w{9}/?$'
-    )
+    pattern = re.compile(DIRNAME_REGEX)
     if not pattern.fullmatch(ARGS.dir):
         raise OSError(
-            '`{}` does not match the expected folder name format.'.format(ARGS.dir),
-            'Should match `YYMMDD_InstrumentSerialNumber_RunNumber_(A|B)FlowcellID`.'
+            '`{}` does not match the expected folder name format.'.format(
+                ARGS.dir),
+            'Should match `YYMMDD_InstrumentSerialNumber_RunNumber_(A|B)FlowcellID[_OPTIONAL_TEXT]`.'
         )
     return {'indir': ARGS.dir, 'outdir': ARGS.outdir, 'seqtype': ARGS.type}
 

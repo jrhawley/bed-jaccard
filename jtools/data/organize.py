@@ -16,7 +16,7 @@ def fetch_seq_info(dirname):
         Directory filename to parse
     '''
     # check directory path matches expected regex for raw sequencing data
-    # matches YYMMDD_InstrumentSerialNumber_RunNumber_(A|B)FlowcellID
+    # matches YYMMDD_InstrumentSerialNumber_RunNumber_(A|B)FlowcellID[_OPTIONAL_TEXT]
     # see https://www.biostars.org/p/124972/, https://www.biostars.org/p/198143/
     pattern = re.compile(DIRNAME_REGEX)
     m = re.match(pattern, dirname)
@@ -27,7 +27,7 @@ def fetch_seq_info(dirname):
         'position': m.group(6),
         'flowcell': m.group(7),
         'date_sub': '',
-        'description': ''
+        'description': m.group(8)
     }
     vals['date_rec'] = vals['date'].strftime('%Y-%m-%d')
     return vals
