@@ -1,15 +1,15 @@
 # bio-jtools
 
-Python package for simple calculation and visualization of BED files
+Various bioinformatics tools in one package
 
+[![Conda](https://img.shields.io/conda/pn/jrhawley/bio-jtools.svg)](https://anaconda.org/jrhawley/bio-jtools)
+[![Python version](https://img.shields.io/pypi/pyversions/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
 [![PyPI](https://img.shields.io/pypi/v/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
 [![Wheel](https://img.shields.io/pypi/wheel/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
-[![Conda](https://img.shields.io/conda/pn/jrhawley/bio-jtools.svg)](https://anaconda.org/jrhawley/bio-jtools)
-
-[![Python version](https://img.shields.io/pypi/pyversions/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
 [![Implementation](https://img.shields.io/pypi/implementation/bio-jtools.svg)](https://pypi.python.org/pypi/bio-jtools)
 
-[![Builds](https://github.com/jrhawley/bio-jtools/workflows/Python%20packaging/badge.svg)](https://travis-ci.com/jrhawley/bio-jtools)
+[![Python build](https://github.com/jrhawley/bio-jtools/workflows/Python%20packaging/badge.svg)](https://github.com/jrhawley/bio-jtools/actions?workflow=Python+packaging)
+[![Conda build](https://github.com/jrhawley/bio-jtools/workflows/Conda%20packaging/badge.svg)](https://github.com/jrhawley/bio-jtools/actions?workflow=Conda+packaging)
 
 ## Usage
 
