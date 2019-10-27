@@ -27,7 +27,7 @@ CONFIG = pd.read_csv('config.tsv', index_col=False, sep='\\t')
 CONFIG = CONFIG.loc[~CONFIG.Sample.str.startswith('#'), :]
 
 REPORT_DIR = 'Reports'
-FASTQ_DIR = 'FASTQs''
+FASTQ_DIR = 'FASTQs'
 ALIGN_DIR = 'Aligned'
 
 SAMPLES = CONFIG['Sample'].tolist()
