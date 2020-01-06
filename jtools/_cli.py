@@ -66,7 +66,7 @@ def validate_organize(ARGS):
     ARGS : Namespace
         Command line arguments
     """
-    from data import DIRNAME_REGEX
+    from .data import DIRNAME_REGEX
 
     # check folder exists
     if not path.exists(ARGS.dir):
