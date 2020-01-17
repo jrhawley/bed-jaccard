@@ -24,7 +24,12 @@ def validate_multijaccard(ARGS):
             raise ValueError("`names` and `beds` parameters must be the same length")
     else:
         names = None
-    return {"beds": ARGS.bed, "names": names, "prefix": ARGS.prefix}
+    return {
+        "beds": ARGS.bed,
+        "names": names,
+        "prefix": ARGS.prefix,
+        "plot": not ARGS.no_plot,
+    }
 
 
 def validate_fastq_info(ARGS):
@@ -106,6 +111,13 @@ def main():
     )
     multijaccard_parser.add_argument(
         "-o", "--prefix", type=str, help="Prefix for output files.", default="jaccard"
+    )
+    multijaccard_parser.add_argument(
+        "-p",
+        "--no-plot",
+        action="store_true",
+        help="Don't plot, only produce table",
+        default=False,
     )
 
     # fastq-info
