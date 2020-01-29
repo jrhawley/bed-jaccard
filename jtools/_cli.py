@@ -24,11 +24,15 @@ def validate_multijaccard(ARGS):
             raise ValueError("`names` and `beds` parameters must be the same length")
     else:
         names = None
+    # check output file formats for plots
+    if ARGS.exts is not None:
+        exts = ARGS.exts.split(",")
     return {
         "beds": ARGS.bed,
         "names": names,
         "prefix": ARGS.prefix,
         "plot": not ARGS.no_plot,
+        "exts": exts,
     }
 
 
@@ -104,6 +108,7 @@ def main():
     multijaccard_parser = SUBPARSERS.add_parser(
         "multi-jaccard",
         help="Perform `bedtools jaccard` on multiple BED files, and cluster samples by their pair-wise Jaccard indices.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     multijaccard_parser.add_argument("bed", type=str, help="BED file(s)", nargs="+")
     multijaccard_parser.add_argument(
@@ -119,10 +124,19 @@ def main():
         help="Don't plot, only produce table",
         default=False,
     )
+    multijaccard_parser.add_argument(
+        "-e",
+        "--exts",
+        type=str,
+        help="Comma-separated list of image file extensions to plot",
+        default="png",
+    )
 
     # fastq-info
     fastqinfo_parser = SUBPARSERS.add_parser(
-        "fastq-info", help="Extract metadata from read information in a FASTQ."
+        "fastq-info",
+        help="Extract metadata from read information in a FASTQ.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     fastqinfo_parser.add_argument("fastq", type=str, help="BED file(s)")
 
@@ -142,7 +156,9 @@ def main():
 
     # org
     org_parser = SUBPARSERS.add_parser(
-        "org", help="Organize a batch of raw sequencing data"
+        "org",
+        help="Organize a batch of raw sequencing data",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     org_parser.add_argument("dir", type=str, help="Input directory to organize")
     org_parser.add_argument(

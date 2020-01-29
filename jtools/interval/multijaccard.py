@@ -11,7 +11,7 @@ import matplotlib
 matplotlib.use("agg")
 
 
-def multijaccard(beds, names=None, prefix="jaccard", plot=True):
+def multijaccard(beds, names=None, prefix="jaccard", plot=True, exts=["png"]):
     """
     Run bedtools jaccard for pairs of samples and plot as heatmap
 
@@ -26,6 +26,8 @@ def multijaccard(beds, names=None, prefix="jaccard", plot=True):
         Prefix for output files
     plot : bool
         Whether to produce a plot or not
+    exts : list<str>
+        Output file formats for heatmap image
     """
     # placeholder for resultant data
     results = pd.DataFrame(
@@ -75,4 +77,6 @@ def multijaccard(beds, names=None, prefix="jaccard", plot=True):
             square=True,
             annot_kws={"size": 8},
         )
-        g.get_figure().savefig(prefix + ".pdf", figsize=(2 * len(beds)))
+        for e in tqdm(exts):
+            g.get_figure().savefig(prefix + "." + e, figsize=(2 * len(beds)))
+
